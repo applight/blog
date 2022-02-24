@@ -1,5 +1,0 @@
-all:
-	scalac Blog.scala
-
-clean:
-	rm *.class
