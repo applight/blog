@@ -38,31 +38,47 @@ class BlogReader {
         $pos = strrpos($fileName,"/");
         if ( ! $pos ) $pos = 0;
         $texPos = strrpos($fileName,".tex");
-        if ( ! $pos ) $texPos = strlen($fileName);
+        if ( ! $texPos ) $texPos = strlen($fileName);
 
         return substr($fileName, $pos, $texPos - $pos).".pdf";
+    }
+
+    private function webifyTextFile( $fileName ) {
+        $brs  = str_replace("\n", "<br/>", file_get_contents($fileName));
+        $nbsp = str_replace(" ", "&nbsp", str_replace("\t", "&nbsp&nbsp&nbsp&nbsp", $brs));
+        return $nbsp;
     }
     
     private function printFile( $fileName ) {
         $mime =  mime_content_type($fileName);
         if ( ! $mime ) {
-            echo "Couldn't get mimetype of " . $fileName . "<br/>";
+            echo "<div><h3>Couldn't get mimetype of " . $fileName . "</h3></div>";
+            return;
         }
+        
         switch ( $mime ) {
         case "text/plain":
-            echo "<div><h3>". $fileName ."</h3><p>". file_get_contents($fileName) ."</p></div>";
+            echo "<div><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
             break;
+
         case "text/x-tex":
-            shell_exec("pdflatex -output-directory=./generatedPdfs -output-format=pdf ".$fileName);
-            echo "<div style=\"text-align:center\"><h4>Pdf viewer testing</h4><iframe src=\""
-                . "https://docs.google.com/viewer?url="
-                . "https://" . $_SERVER['HTTP_HOST'] . "/blog/generatedPdfs"
-                . $this->texPdfName( $fileName )
-                . "&embedded=true\" frameborder=\"0\" height=\"500px\" width=\"100%\">"
-                . "</iframe></div>";
+            // call pdflatex and create a PDF version of the tex file
+            $shell_output = shell_exec("pdflatex -output-directory=./generatedPdfs -output-format=pdf "
+                                       .$fileName
+                                       ." > ./logs/shell_exec_pdflatex");
+            
+            file_put_contents("./logs/pdflatex.log", "file name: ".$fileName."\n".$shell_output."\n\n");
+
+            // no break, falls through to 'text/pdf'
+            $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
+        case "application/pdf":
+            echo '<div><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url='
+                . "https://". $_SERVER['HTTP_HOST'] ."/blog/". $fileName .'" type="application/pdf" width="100%" height="500px"></embed></div>';
             break;
+            
+            
         default:
-            echo mime_content_type($fileName) . "<br/>";
+            echo "<p>" . mime_content_type($fileName) . "<br/></p>";
             break;
         }
     }

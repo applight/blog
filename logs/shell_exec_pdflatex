@@ -1,0 +1,8 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+! I can't write on file `brain.log'.
+(Press Enter to retry, or Control-D to exit; default file extension is `.log')
+Please type another transcript file name: 
+! Emergency stop
+!  ==> Fatal error occurred, no output PDF file produced!
