@@ -4,6 +4,7 @@ import java.io.File
 import scala.io.Source
 import sys.process._
 import scala.util.Properties
+import scala.language.postfixOps
 
 abstract class BlogFile {
     def render(): String
@@ -14,7 +15,7 @@ case class Pdf(f:File) extends BlogFile {
         
         "<div style=\"text-align:center\"><h4>Pdf viewer testing</h4><iframe src=\"" +
         "https://docs.google.com/viewer?url=" + 
-        Properties.envOrElse("PHPHOST", "dev.thenshow.me/blog") + "/" + f.getPath() + 
+        Properties.envOrElse("PHPHOST", "https://xmattv.me/blog") + "/" + f.getPath() + 
         "&embedded=true\" frameborder=\"0\" height=\"500px\" width=\"100%\"></iframe></div>"
     }
 }

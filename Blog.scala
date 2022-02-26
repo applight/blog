@@ -3,8 +3,8 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import scala.util.matching.Regex
 import sys.process._
+import scala.language.postfixOps
 import me.thenshow._
-
 object Blog {
   def getFilesInDir( dir: String ) : List[File] = {
     val d = new File(dir)

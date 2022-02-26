@@ -1,0 +1,58 @@
+SOs/DLLs for the internet:
+
+Imagine urls that, when referenced as an include/import, emit their a class signature (method interfaces, etc), and a reference uri for execution (web equivilent to an instruction address for that stack frame/where to point the instruction pointer):
+	import/include 'https://example.com/package/class.webcode'
+
+Such that the return (a 200 status) would be something like (or a binary version of):
+{
+  members: {
+    name: ['method_a', 'method_b', 'data_member', 'static_data_member'],
+    pointers: [
+      method_a: {
+        type: 'method',
+      	ref: 'https://example.com/package/class/method_a',
+	parameters: ['username','password'],
+	having_interface: 'https://example.com/other_package/parent_class'
+      },
+      plus: {
+        type: 'method',
+      	ref: 'https://example.com/package/class/plus',
+	parameters: ['a','b'],
+	having_interface: 'https://example.com/package/class'
+      },
+      data_member: {
+        type: 'data_member',
+      	ref: 'https://example.com/package/class/data_member',
+	having_object: 'https://example.com/package/class/instance_a'
+	<<_parent_access_token: ...>>
+      },
+      static_data_member: {
+        type: 'static_data_member',
+      	ref: 'https://example.com/package/class/static_data_member',
+	having_class: 'https://example.com/package/class' 
+      }
+    ]
+  }
+}
+
+
+Methods could be called with GETs or POSTs
+
+https://example.com/package/class/method_a?username=bobdole&password=president
+-- same as
+https://example.com/other_package/parent_class/method_a?username=bobdole&password=president
+
+
+https://example.com/package/class/plus?a=1&b=2
+-- request resulting in:
+{
+  /* perhaps a dev flag produces 'caller' as output for debugging */
+  caller: {
+    client: { /* client program/browser/server info */ },
+    _ref: { /* call-stack, caller uri info, etc */ }
+  },
+  return: {
+    type: 'Number',
+    value: '3'
+  }
+}

@@ -3,7 +3,11 @@
 <head></head>
 <body>
 <?php
-echo shell_exec("scala Blog");
+require_once('./BlogReader.php');
+
+$blog = BlogReader::getInstance();
+$blog->printContent();
+
 ?>
 </body>
 </html>
