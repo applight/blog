@@ -79,6 +79,7 @@ class BlogReader {
 
             echo '<div id="'
                 . $this->dashify($fileName).'"></div>'
+                . ' <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>'
                 . '<script type="text/javascript">'
                 . 'document.addEventListener("adobe_dc_view_sdk.ready", function() {'
                 . 'var adobeDCView = new AdobeDC.View({clientId: '
