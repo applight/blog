@@ -73,7 +73,7 @@ class BlogReader {
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
         case "application/pdf":
             echo '<div><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url='
-                . "https://". $_SERVER['HTTP_HOST'] ."/blog/". $fileName .'" type="application/pdf" width="100%" height="500px"></embed></div>';
+                . "https://". $_SERVER['HTTP_HOST'] ."/blog/". $fileName .'" width="100%" height="500px"></embed></div>';
             break;
             
             
