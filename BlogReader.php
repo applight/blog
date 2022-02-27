@@ -56,13 +56,13 @@ class BlogReader {
     private function printFile( $fileName ) {
         $mime =  mime_content_type($fileName);
         if ( ! $mime ) {
-            echo "<div><h3>Couldn't get mimetype of " . $fileName . "</h3></div>";
+            echo "<div class=\"item\" ><h3>Couldn't get mimetype of " . $fileName . "</h3></div>";
             return;
         }
         
         switch ( $mime ) {
         case "text/plain":
-            echo "<div><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
+            echo "<div class=\"item\" ><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
             break;
 
         case "text/x-tex":
@@ -77,7 +77,7 @@ class BlogReader {
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
         case "application/pdf":
 
-            echo '<div id="'
+            echo '<div class="item"  id="'
                 . $this->dashify($fileName).'"></div>'
                 . ' <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>'
                 . '<script type="text/javascript">'
@@ -88,14 +88,6 @@ class BlogReader {
                 . 'adobeDCView.previewFile({ '
                 . 'content:  {location: {url: "/blog/'.$fileName.'"}},'
                 . 'metaData: {fileName: "'.$fileName.'"}}); });</script>';
-
-
-            /*
-            echo '<div><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url='
-                . "https%3A%2F%2F". $_SERVER['HTTP_HOST'] ."%2Fblog%2F"
-                . $this->slashifyUrl($fileName)
-                . '" width="100%" height="500px"></embed></div>';
-            */
             break;
             
         default:

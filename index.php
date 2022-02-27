@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+    <head>
+	<link rel="stylesheet" href="./style.css">
+    </head>
 <body>
 <?php
 require_once('./BlogReader.php');
