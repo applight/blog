@@ -43,6 +43,10 @@ class BlogReader {
         return substr($fileName, $pos, $texPos - $pos).".pdf";
     }
 
+    private function slashifyUrl( $str ) {
+        return str_replace("/", "%2F", $str);
+    }
+    
     private function webifyTextFile( $fileName ) {
         $brs  = str_replace("\n", "<br/>", file_get_contents($fileName));
         $nbsp = str_replace(" ", "&nbsp", str_replace("\t", "&nbsp&nbsp&nbsp&nbsp", $brs));
@@ -73,7 +77,9 @@ class BlogReader {
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
         case "application/pdf":
             echo '<div><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url='
-                . "https://". $_SERVER['HTTP_HOST'] ."/blog/". $fileName .'" width="100%" height="500px"></embed></div>';
+                . "https%3A%2F%2F". $_SERVER['HTTP_HOST'] ."%2Fblog%2F"
+                . $this->slashifyUrl($fileName)
+                . '" width="100%" height="500px"></embed></div>';
             break;
             
             
