@@ -43,8 +43,8 @@ class BlogReader {
         return substr($fileName, $pos, $texPos - $pos).".pdf";
     }
 
-    private function slashifyUrl( $str ) {
-        return str_replace("/", "%2F", $str);
+    private function dashify( $str ) {
+        return str_replace("/", "-", str_replace(".", "-", $str));
     }
     
     private function webifyTextFile( $fileName ) {
@@ -76,12 +76,26 @@ class BlogReader {
             // no break, falls through to 'text/pdf'
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
         case "application/pdf":
+
+            echo '<div id="'
+                . $this->dashify($fileName).'"></div>'
+                . '<script type="text/javascript">'
+                . 'document.addEventListener("adobe_dc_view_sdk.ready", function() {'
+                . 'var adobeDCView = new AdobeDC.View({clientId: '
+                . '"e038960533a14f3b9c611c8fc99d9904", divId: "'
+                . $this->dashify($fileName).'"});'
+                . 'adobeDCView.previewFile({ '
+                . 'content:  {location: {url: "/blog/'.$fileName.'"}},'
+                . 'metaData: {fileName: "'.$fileName.'"}}); });</script>';
+
+
+            /*
             echo '<div><embed src="https://drive.google.com/viewerng/viewer?embedded=true&url='
                 . "https%3A%2F%2F". $_SERVER['HTTP_HOST'] ."%2Fblog%2F"
                 . $this->slashifyUrl($fileName)
                 . '" width="100%" height="500px"></embed></div>';
+            */
             break;
-            
             
         default:
             echo "<p>" . mime_content_type($fileName) . "<br/></p>";
