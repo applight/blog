@@ -62,7 +62,7 @@ class BlogReader {
         
         switch ( $mime ) {
         case "text/plain":
-            echo "<div class=\"item\" ><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
+            echo "<div class=\"item text\" ><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
             break;
 
         case "text/x-tex":
@@ -77,7 +77,7 @@ class BlogReader {
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
         case "application/pdf":
 
-            echo '<div class="item"  id="'
+            echo '<div class="item pdf"  id="'
                 . $this->dashify($fileName).'"></div>'
                 . ' <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>'
                 . '<script type="text/javascript">'
