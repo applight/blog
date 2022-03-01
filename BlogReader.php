@@ -87,7 +87,8 @@ class BlogReader {
                 . $this->dashify($fileName).'"});'
                 . 'adobeDCView.previewFile({ '
                 . 'content:  {location: {url: "/blog/'.$fileName.'"}},'
-                . 'metaData: {fileName: "'.$fileName.'"}}); });</script>';
+                . 'metaData: {fileName: "'.$fileName.'"}}'
+                . '{ embed: "Lightbox" }); });</script>';
             break;
             
         default:
