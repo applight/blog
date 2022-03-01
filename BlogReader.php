@@ -88,7 +88,7 @@ class BlogReader {
                 . 'adobeDCView.previewFile({ '
                 . 'content:  {location: {url: "/blog/'.$fileName.'"}},'
                 . 'metaData: {fileName: "'.$fileName.'"}}'
-                . '{ embed: "Lightbox" }); });</script>';
+                . ', { embed: "Lightbox" }); });</script>';
             break;
             
         default:
