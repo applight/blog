@@ -2,11 +2,16 @@ body {
   margin: 20px auto;
 }
 
+.pdf {
+    width: auto;
+    height: 700px;
+}
+
 .item {
-  width: 28%;
+  width: 38%;
   float: left;
-  margin: 20px;
-  padding: 10px;
+  margin: 10px 5px;
+  padding: 7px;
   word-wrap: anywhere;
   font-size: 0.7em;
   border-color: crimson;
