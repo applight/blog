@@ -61,6 +61,14 @@ class BlogReader {
         }
         
         switch ( $mime ) {
+                
+        case "image/png":
+        case "image/bmp":
+        case "image/jpeg":
+        case "image/gif":
+            echo "<div class=\"item image\" ><img src=\"" . $fileName . "\" ></div>";
+            break;
+                
         case "text/plain":
             echo "<div class=\"item text\" ><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
             break;
