@@ -8,9 +8,9 @@ class BlogReader {
     private function __construct( $contentDir ) {
         self::$instance = $this;
         $this->content = $this->findContent( $contentDir );
-        uasort( $content, array( $this, function($a,$b) {
-            return filemtime($a) - filemtime($b);
-        }));
+        uasort( $content, function($a,$b) {
+            return filectime($b) - filectime($a);
+        });
         date_default_timezone_set('EDT');
     }
 
@@ -61,7 +61,7 @@ class BlogReader {
             return;
         }
         
-        $header = "<h3>". $fileName . " : " . date("l jS \of F Y h:i:s A", filemtime($fileName) ) . "</h3>";
+        $header = "<h3>". $fileName . " : " . date("l jS \of F Y h:i:s A", filectime($fileName) ) . "</h3>";
         
         switch ( $mime ) {
                 
