@@ -61,7 +61,7 @@ class BlogReader {
             return;
         }
         
-        $header = "<h3>" $fileName . " : " . date("l jS \of F Y h:i:s A", filemtime($fileName) ) . "</h3>";
+        $header = "<h3>". $fileName . " : " . date("l jS \of F Y h:i:s A", filemtime($fileName) ) . "</h3>";
         
         switch ( $mime ) {
                 
