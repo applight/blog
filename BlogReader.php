@@ -9,7 +9,7 @@ class BlogReader {
         self::$instance = $this;
         $this->content = $this->findContent( $contentDir );
         uasort( $this->content, function($a,$b) {
-            return filemtime($a) - filemtime($b);
+            return filemtime($b) - filemtime($a);
         });
     }
 
