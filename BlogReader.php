@@ -8,9 +8,10 @@ class BlogReader {
     private function __construct( $contentDir ) {
         self::$instance = $this;
         $this->content = $this->findContent( $contentDir );
-        uasort( $this->content, function($a,$b) {
-            return filectime($b) - filectime($a);
-        });
+        uasort( $content, array( $this, function($a,$b) {
+            return filemtime($a) - filemtime($b);
+        }));
+        date_default_timezone_set('EDT');
     }
 
     public static function getInstance( $contentDir = "./content" ) {
@@ -60,19 +61,21 @@ class BlogReader {
             return;
         }
         
+        $header = "<h3>" $fileName . " : " . date("l jS \of F Y h:i:s A", filemtime($fileName) ) . "</h3>";
+        
         switch ( $mime ) {
                 
         case "image/png":
         case "image/bmp":
         case "image/jpeg":
         case "image/gif":
-            echo "<div class=\"item image\" ><img src=\"" . $fileName . "\" ></div>";
+            echo "<div class=\"item image\" >". $header ."<img src=\"" . $fileName . "\" ></div>";
             break;
                 
         case "text/plain":
-            echo "<div class=\"item text\" ><h3>". $fileName ."</h3><p>". $this->webifyTextFile($fileName) ."</p></div>";
+            echo "<div class=\"item text\" >". $header ."<p>". $this->webifyTextFile($fileName) ."</p></div>";
             break;
-
+        
         case "text/x-tex":
             // call pdflatex and create a PDF version of the tex file
             $shell_output = shell_exec("pdflatex -output-directory=./generatedPdfs -output-format=pdf "
@@ -100,7 +103,7 @@ class BlogReader {
             break;
             
         default:
-            echo "<p>" . mime_content_type($fileName) . "<br/></p>";
+            echo "<div class=\"item unknown\" >". $header ."<p>". mime_content_type($fileName) . "</p></div>";
             break;
         }
     }
