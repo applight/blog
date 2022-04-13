@@ -8,7 +8,7 @@ class BlogReader {
     private function __construct( $contentDir ) {
         self::$instance = $this;
         $this->content = $this->findContent( $contentDir );
-        uasort( $content, function($a,$b) {
+        usort( $this->content, function($a,$b) {
             return filectime($b) - filectime($a);
         });
         date_default_timezone_set('EDT');
