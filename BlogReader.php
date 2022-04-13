@@ -88,8 +88,9 @@ class BlogReader {
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
         case "application/pdf":
 
-            echo '<div class="item pdf"  id="'
-                . $this->dashify($fileName).'"></div>'
+            echo  '<div class="item">'. $header
+                . '<div class="pdf"  id="'
+                . $this->dashify($fileName).'"></div></div>'
                 . ' <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>'
                 . '<script type="text/javascript">'
                 . 'document.addEventListener("adobe_dc_view_sdk.ready", function() {'
