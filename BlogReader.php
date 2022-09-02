@@ -69,7 +69,7 @@ class BlogReader {
         case "image/bmp":
         case "image/jpeg":
         case "image/gif":
-            echo "<div style=\"width: 40em; height: 30em;\" class=\"item text image\"> ". $header ."<img style="" src=\"" . $fileName . "\" /></div>";
+            echo "<div style=\"width: 40em; height: 30em;\" class=\"item text image\"> ". $header ."<img src=\"" . $fileName . "\" /></div>";
             break;
                 
         case "text/plain":

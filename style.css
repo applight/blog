@@ -7,12 +7,16 @@ body {
     height: 700px;
 }
 
+
 .item {
-  width: 22%;
+  width: 28%;
+
   height: auto;
-  object-fit: size;
+
   float: left;
+  
   margin: 14px 7px;
+  padding: 7px;
   word-wrap:break-word;
   font-size: 0.7em;
   border-color: crimson;
@@ -22,8 +26,9 @@ body {
   font-family: mono;
 }
 
+
 .image {
-    width
+
   overflow: hidden;
   object-fit: cover;
 }
