@@ -69,7 +69,7 @@ class BlogReader {
         case "image/bmp":
         case "image/jpeg":
         case "image/gif":
-            echo "<div class=\"item image\" >". $header ."<img src=\"" . $fileName . "\" ></div>";
+            echo "<div style=\"width: 40em; height: 30em;\" class=\"item text image\"> ". $header ."<img src=\"" . $fileName . "\" /></div>";
             break;
                 
         case "text/plain":
@@ -78,11 +78,9 @@ class BlogReader {
         
         case "text/x-tex":
             // call pdflatex and create a PDF version of the tex file
-            $shell_output = shell_exec("pdflatex -output-directory=./generatedPdfs -output-format=pdf "
-                                       .$fileName
-                                       ." > ./logs/shell_exec_pdflatex");
-            
-            file_put_contents("./logs/pdflatex.log", "file name: ".$fileName."\n".$shell_output."\n\n");
+            $shell_output = shell_exec("pdflatex -output-directory=./generatedPdfs -output-format=pdf " . $fileName ." > ./logs/shell_exec_pdflatex");
+
+	    file_put_contents("./logs/pdflatex.log", "file name: ".$fileName."\n".$shell_output."\n\n");
 
             // no break, falls through to 'text/pdf'
             $fileName = "./generatedPdfs" . $this->texPdfName( $fileName );
