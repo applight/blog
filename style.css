@@ -20,3 +20,8 @@ body {
   border-style: ridge;
   font-family: mono;
 }
+
+.image {
+  overflow: hidden;
+  object-fit: cover;
+}
