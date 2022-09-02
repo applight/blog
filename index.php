@@ -12,4 +12,9 @@ $blog->printContent();
 
 ?>
 </body>
+<style>
+    asd {
+        
+    }
+</style>
 </html>

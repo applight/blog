@@ -10,7 +10,7 @@ body {
 .item {
   width: 22%;
   height: auto;
-  object-fit: cover;
+  object-fit: size;
   float: left;
   margin: 14px 7px;
   word-wrap:break-word;
@@ -23,6 +23,7 @@ body {
 }
 
 .image {
+    width
   overflow: hidden;
   object-fit: cover;
 }
