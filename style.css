@@ -4,15 +4,12 @@ body {
 
 .pdf {
     width: auto;
-    height: 700px;
+    height: 500px;
 }
 
 
 .item {
   width: 28%;
-
-  height: auto;
-
   float: left;
   
   margin: 14px 7px;
