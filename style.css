@@ -9,7 +9,7 @@ body {
 
 
 .item {
-  width: 28%;
+  width: 23%;
   float: left;
   
   margin: 14px 7px;
@@ -21,10 +21,12 @@ body {
   border-radius: 28px;
   border-style: ridge;
   font-family: mono;
+  overflow: hidden;
 }
 
 
-.image {
+.image img {
+  width: 100%;
   height: auto;
   overflow: hidden;
   object-fit: scale-down;
