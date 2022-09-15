@@ -5,7 +5,6 @@ body {
 .item {
   width: 22%;
   float: left;
-  
   margin: 7px 5px;
   padding: 7px;
   word-wrap:break-word;
@@ -15,7 +14,14 @@ body {
   border-radius: 28px;
   border-style: ridge;
   font-family: mono;
-  overflow: hidden;
+}
+
+.item h2 {
+  font-size: 1.0em;
+}
+
+.item h3 {
+  font-size: 1.2em;
 }
 
 .item div.pdf {
@@ -28,4 +34,10 @@ body {
   height: auto;
   overflow: hidden;
   object-fit: scale-down;
+}
+
+.item p.text {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
 }
