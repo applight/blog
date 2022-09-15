@@ -23,7 +23,7 @@ body {
     height: 500px;
 }
 
-.image img {
+.item img.image {
   width: 100%;
   height: auto;
   overflow: hidden;
