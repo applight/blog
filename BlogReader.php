@@ -69,11 +69,11 @@ class BlogReader {
         case "image/bmp":
         case "image/jpeg":
         case "image/gif":
-            echo "<div class=\"item image\"> ". $header ."<img src=\"" . $fileName . "\" /></div>";
+            echo "<div class=\"item\"> ". $header ."<img class=\"image\" src=\"" . $fileName . "\" /></div>";
             break;
                 
         case "text/plain":
-            echo "<div class=\"item text\" >". $header ."<p>". $this->webifyTextFile($fileName) ."</p></div>";
+            echo "<div class=\"item\" >". $header ."<p class=\"text\">". $this->webifyTextFile($fileName) ."</p></div>";
             break;
         
         case "text/x-tex":
@@ -102,7 +102,7 @@ class BlogReader {
             break;
             
         default:
-            echo "<div class=\"item unknown\" >". $header ."<p>". mime_content_type($fileName) . "</p></div>";
+            echo "<div class=\"item\" >". $header ."<p class=\"unknown\">". mime_content_type($fileName) . "</p></div>";
             break;
         }
     }
