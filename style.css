@@ -2,17 +2,11 @@ body {
   margin: 20px auto;
 }
 
-.pdf {
-    width: auto;
-    height: 500px;
-}
-
-
 .item {
-  width: 23%;
+  width: 22%;
   float: left;
   
-  margin: 14px 7px;
+  margin: 7px 5px;
   padding: 7px;
   word-wrap:break-word;
   font-size: 0.7em;
@@ -24,6 +18,10 @@ body {
   overflow: hidden;
 }
 
+.item div.pdf {
+    width: 100%;
+    height: 500px;
+}
 
 .image img {
   width: 100%;
